@@ -1,21 +1,41 @@
 # Python
 __pycache__/
-*.pyc
-*.pyo
+*.py[cod]
+*$py.class
 
 # Virtual environment
 venv/
+.env/
 
 # Django
 db.sqlite3
 *.log
 staticfiles/
+media/
+
+# Migrations cache
+*.sqlite3
 
 # Environment variables
 .env
+.env.local
 
 # VS Code
 .vscode/
 
+# PyCharm
+.idea/
+
 # OS
 .DS_Store
+Thumbs.db
+
+# Test / coverage
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Build
+dist/
+build/
+*.egg-info/
