@@ -24,8 +24,7 @@ Permite que usuários criem contas, façam login com JWT e gerenciem suas própr
 - Refresh token  
 - Dados do usuário autenticado  
 - CRUD de tarefas  
-- Filtro de tarefas  
-- Busca de tarefas  
+- Filtro e busca de tarefas  
 - Paginação automática  
 
 ---
