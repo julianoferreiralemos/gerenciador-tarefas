@@ -1,27 +1,23 @@
-# Gerenciador de Tarefas API
+# Gerenciador de Tarefas - API Django
 
-API backend para gerenciamento de tarefas com autenticação JWT, construída com **Django** e **Django REST Framework**.
-
-O projeto permite que usuários:
-- Criem conta
-- Façam login com JWT
-- Criem, visualizem, editem e excluam tarefas
+API backend profissional para gerenciamento de tarefas com autenticação JWT, construída com **Django** e **Django REST Framework**.  
+Permite que usuários criem contas, façam login e gerenciem suas tarefas.
 
 ---
 
-##  Tecnologias
+## Tecnologias
 
 - Python 3.12  
 - Django 5  
 - Django REST Framework  
 - PostgreSQL  
 - JWT Authentication (Simple JWT)  
-- Docker & docker‑compose  
-- drf‑spectacular (Swagger)
+- Docker & Docker Compose  
+- drf-spectacular (Swagger / OpenAPI)
 
 ---
 
-##  Funcionalidades
+## Funcionalidades
 
 - Registro de usuário  
 - Login com JWT  
@@ -33,7 +29,7 @@ O projeto permite que usuários:
 
 ---
 
-##  Estrutura
+## Estrutura do projeto
 
 
 backend
@@ -45,22 +41,21 @@ backend
 └── manage.py
 
 
-- `accounts`: lógica de autenticação  
-- `tasks`: endpoints de tarefas  
-- `core`: utilitários globais  
-- `config`: configurações do Django
+- **accounts** → lógica de autenticação  
+- **tasks** → endpoints de tarefas  
+- **core** → utilitários globais  
+- **config** → configurações do Django
 
 ---
 
-##  Como rodar
+## Como rodar
 
-### 🔹 1. Clonar o repositório
+1. **Clonar o repositório**
 ```bash
 git clone https://github.com/seu-usuario/gerenciador-de-tarefas.git
 cd gerenciador-de-tarefas/backend
-🔹 2. Criar .env
 
-Crie um arquivo .env com as variáveis:
+Criar o arquivo .env com as variáveis:
 
 SECRET_KEY=django-insecure-dev-key
 DEBUG=True
@@ -70,27 +65,30 @@ DB_USER=postgres
 DB_PASSWORD=postgres
 DB_HOST=db
 DB_PORT=5432
-🔹 3. Com Docker (recomendado)
+
+Rodar com Docker (recomendado)
+
 docker compose up --build
 
-A API estará em:
- Swagger: http://127.0.0.1:8000/api/docs/
- Admin: http://127.0.0.1:8000/admin/
+Swagger: http://127.0.0.1:8000/api/docs/
 
-🔹 4. Sem Docker
+Admin: http://127.0.0.1:8000/admin/
+
+Rodar sem Docker
+
 python -m venv venv
-source venv/bin/activate      # Linux/WSL
+source venv/bin/activate  # Linux / WSL
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
- Endpoints principais
- Autenticação
+Endpoints principais
+Autenticação
 Método	Rota	Descrição
 POST	/api/auth/register	Registrar usuário
 POST	/api/auth/login	Login com JWT
 POST	/api/auth/refresh	Refresh token
-GET	/api/auth/me	Detalhes do usuário
- Tarefas
+GET	/api/auth/me	Dados do usuário
+Tarefas
 Método	Rota	Descrição
 GET	/api/tasks	Lista tarefas
 POST	/api/tasks	Cria tarefa
@@ -98,14 +96,14 @@ GET	/api/tasks/{id}	Detalha tarefa
 PUT	/api/tasks/{id}	Atualiza tarefa
 DELETE	/api/tasks/{id}	Exclui tarefa
 
-Todos endpoints de tarefas exigem JWT válido.
+Todos os endpoints de tarefas exigem JWT válido.
 
- Observações finais
+Status do projeto
 
- Backend funcional e pronto para ser usado
- Swagger configurado para exploração da API
+Backend completo e funcional
 
+JWT Authentication implementada
 
- Status
+Swagger / OpenAPI configurado
 
-Status:  Completo (backend com autenticação, documentação e Docker)
+Estrutura modular pronta para expansão
