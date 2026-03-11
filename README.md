@@ -1,96 +1,126 @@
-# Gerenciador de Tarefas
+# Gerenciador de Tarefas - API Django
 
-Este projeto é um backend de um gerenciador de tarefas desenvolvido com **Django** e **Django Rest Framework**.
-
-A ideia do projeto é criar uma API que permita que usuários possam criar, visualizar, atualizar e concluir tarefas.
-
-Neste momento o projeto está focado apenas no **backend**. Ainda não existe frontend.
+API backend profissional para gerenciamento de tarefas, desenvolvida com **Django** e **Django REST Framework**.  
+Permite que usuários criem contas, façam login com JWT e gerenciem suas próprias tarefas.
 
 ---
 
-## Tecnologias utilizadas
+# Tecnologias
 
-* Python
-* Django
-* Django Rest Framework
-* PostgreSQL
+- Python 3.12  
+- Django 5  
+- Django REST Framework  
+- PostgreSQL  
+- JWT Authentication (Simple JWT)  
+- Docker & Docker Compose  
+- drf-spectacular (Swagger / OpenAPI)
 
 ---
 
-## Estrutura do projeto
+# Funcionalidades
 
-O backend está organizado utilizando uma pasta `apps`, onde cada parte do sistema fica separada em sua própria aplicação.
+- Registro de usuário  
+- Login com JWT  
+- Refresh token  
+- Dados do usuário autenticado  
+- CRUD de tarefas  
+- Filtro de tarefas  
+- Busca de tarefas  
+- Paginação automática  
 
-```
+---
+
+# Estrutura do projeto
+
+
 backend
- ├── apps
- │   ├── core
- │   └── tasks
- ├── config
- └── manage.py
-```
+├── apps
+│ ├── core
+│ ├── tasks
+│ └── accounts
+├── config
+└── manage.py
 
-### core
 
-Aplicação responsável por componentes reutilizáveis do sistema.
-
-Atualmente contém um **BaseModel**, que centraliza campos comuns utilizados em outros modelos:
-
-* `created_at`
-* `updated_at`
-* `is_active`
-
-Esse modelo é **abstrato** e serve como base para outros modelos do projeto.
+- **apps/** → aplicações modulares (tarefas, contas, core)  
+- **config/** → configurações globais do Django (settings, urls, wsgi)  
 
 ---
 
-### tasks
+# Rodando o projeto
 
-Aplicação responsável pelo gerenciamento de tarefas.
+### 1. Clone o repositório
+```bash
+git clone https://github.com/seu-usuario/gerenciador-de-tarefas.git
+cd gerenciador-de-tarefas/backend
+2. Configure variáveis de ambiente
 
-O modelo `Task` possui:
+Crie um arquivo .env na raiz do backend com as seguintes variáveis:
 
-* título
-* descrição
-* status de conclusão
-* data de conclusão
-* relação com usuário
-* herança do `BaseModel`
+SECRET_KEY=django-insecure-dev-key
+DEBUG=True
 
-Também foi criado um **TaskManager**, responsável por consultas personalizadas como:
+DB_NAME=tasksdb
+DB_USER=postgres
+DB_PASSWORD=postgres
+DB_HOST=db
+DB_PORT=5432
+3. Com Docker (recomendado)
+docker compose up --build
 
-* tarefas concluídas
-* tarefas pendentes
-* tarefas ativas
+Acesse:
 
----
+Admin: http://127.0.0.1:8000/admin/
 
-## Banco de dados
+Swagger / OpenAPI: http://127.0.0.1:8000/api/docs/
 
-O projeto utiliza **PostgreSQL**.
+4. Sem Docker
+python -m venv venv
+source venv/bin/activate  # Linux / WSL
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
+Endpoints principais
+Autenticação
 
-As migrations do Django estão sendo usadas para controlar a estrutura do banco.
+POST /api/auth/register → registra novo usuário
 
----
+POST /api/auth/login → login com JWT
 
-## Estado atual do projeto
+POST /api/auth/refresh → refresh token
 
-Até o momento foram implementados:
+GET /api/auth/me → dados do usuário autenticado
 
-* Estrutura modular utilizando apps
-* Configuração do PostgreSQL
-* Modelo de tarefas
-* BaseModel reutilizável
-* Manager customizado para consultas de tarefas
-* Sistema de migrations funcionando
+Tarefas
 
-A API REST ainda será implementada nas próximas etapas.
+GET /api/tasks → lista tarefas
 
----
+POST /api/tasks → cria tarefa
 
-## Próximos passos
+GET /api/tasks/{id} → detalha tarefa
 
-* Criar serializers com Django Rest Framework
-* Implementar endpoints da API
-* Adicionar autenticação
-* Criar frontend para consumir a API
+PUT /api/tasks/{id} → atualiza tarefa
+
+DELETE /api/tasks/{id} → remove tarefa
+
+Todos os endpoints de tarefas requerem autenticação JWT.
+
+Status do projeto
+
+Backend completo e funcional
+
+Autenticação JWT implementada
+
+Swagger / OpenAPI configurado
+
+Estrutura modular pronta para expansão
+
+Frontend ainda não implementado
+
+Observações
+
+JWT Authentication habilitada
+
+Banco PostgreSQL rodando dentro do Docker ou localmente
+
+Estrutura modular (apps/) permite adicionar novas apps facilmente
