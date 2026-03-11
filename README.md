@@ -1,36 +1,27 @@
 # Gerenciador de Tarefas - API Django
 
-API backend profissional para gerenciamento de tarefas com autenticação JWT, construída com **Django** e **Django REST Framework**.  
+API backend profissional para gerenciamento de tarefas com autenticação JWT, construída com Django e Django REST Framework.  
 Permite que usuários criem contas, façam login e gerenciem suas tarefas.
 
----
-
 ## Tecnologias
-
 - Python 3.12  
 - Django 5  
 - Django REST Framework  
 - PostgreSQL  
 - JWT Authentication (Simple JWT)  
 - Docker & Docker Compose  
-- drf-spectacular (Swagger / OpenAPI)
-
----
+- drf-spectacular (Swagger / OpenAPI)  
 
 ## Funcionalidades
-
 - Registro de usuário  
 - Login com JWT  
 - Refresh token  
 - Dados do usuário autenticado  
 - CRUD de tarefas  
 - Busca e filtro de tarefas  
-- Paginação automática
-
----
+- Paginação automática  
 
 ## Estrutura do projeto
-
 
 backend
 ├── apps
@@ -44,19 +35,19 @@ backend
 - **accounts** → lógica de autenticação  
 - **tasks** → endpoints de tarefas  
 - **core** → utilitários globais  
-- **config** → configurações do Django
-
----
+- **config** → configurações do Django  
 
 ## Como rodar
 
 1. **Clonar o repositório**
+
 ```bash
 git clone https://github.com/seu-usuario/gerenciador-de-tarefas.git
 cd gerenciador-de-tarefas/backend
 
-Criar o arquivo .env com as variáveis:
+Criar o arquivo .env com as variáveis
 
+# .env
 SECRET_KEY=django-insecure-dev-key
 DEBUG=True
 
@@ -70,10 +61,6 @@ Rodar com Docker (recomendado)
 
 docker compose up --build
 
-Swagger: http://127.0.0.1:8000/api/docs/
-
-Admin: http://127.0.0.1:8000/admin/
-
 Rodar sem Docker
 
 python -m venv venv
@@ -81,6 +68,11 @@ source venv/bin/activate  # Linux / WSL
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
+
+Swagger: http://127.0.0.1:8000/api/docs/
+
+Admin: http://127.0.0.1:8000/admin/
+
 Endpoints principais
 Autenticação
 Método	Rota	Descrição
@@ -96,14 +88,16 @@ GET	/api/tasks/{id}	Detalha tarefa
 PUT	/api/tasks/{id}	Atualiza tarefa
 DELETE	/api/tasks/{id}	Exclui tarefa
 
-Todos os endpoints de tarefas exigem JWT válido.
+```
 
-Status do projeto
+## Todos os endpoints de tarefas exigem JWT válido.
 
-Backend completo e funcional
+## Status do projeto
 
-JWT Authentication implementada
+-Backend completo e funcional
 
-Swagger / OpenAPI configurado
+-JWT Authentication implementada
 
-Estrutura modular pronta para expansão
+-Swagger / OpenAPI configurado
+
+-Estrutura modular pronta para expansão
