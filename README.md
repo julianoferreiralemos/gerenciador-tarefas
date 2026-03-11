@@ -1,60 +1,66 @@
-# Gerenciador de Tarefas - API Django
+# Gerenciador de Tarefas API
 
-API backend profissional para gerenciamento de tarefas, desenvolvida com **Django** e **Django REST Framework**.  
-Permite que usuários criem contas, façam login com JWT e gerenciem suas próprias tarefas.
+API backend para gerenciamento de tarefas com autenticação JWT, construída com **Django** e **Django REST Framework**.
+
+O projeto permite que usuários:
+- Criem conta
+- Façam login com JWT
+- Criem, visualizem, editem e excluam tarefas
 
 ---
 
-# Tecnologias
+##  Tecnologias
 
 - Python 3.12  
 - Django 5  
 - Django REST Framework  
 - PostgreSQL  
 - JWT Authentication (Simple JWT)  
-- Docker & Docker Compose  
-- drf-spectacular (Swagger / OpenAPI)
+- Docker & docker‑compose  
+- drf‑spectacular (Swagger)
 
 ---
 
-# Funcionalidades
+##  Funcionalidades
 
 - Registro de usuário  
 - Login com JWT  
 - Refresh token  
 - Dados do usuário autenticado  
 - CRUD de tarefas  
-- Filtro e busca de tarefas  
-- Paginação automática  
+- Busca e filtro de tarefas  
+- Paginação automática
 
 ---
 
-# Estrutura do projeto
+##  Estrutura
 
 
 backend
 ├── apps
+│ ├── accounts
 │ ├── core
-│ ├── tasks
-│ └── accounts
+│ └── tasks
 ├── config
 └── manage.py
 
 
-- **apps/** → aplicações modulares (tarefas, contas, core)  
-- **config/** → configurações globais do Django (settings, urls, wsgi)  
+- `accounts`: lógica de autenticação  
+- `tasks`: endpoints de tarefas  
+- `core`: utilitários globais  
+- `config`: configurações do Django
 
 ---
 
-# Rodando o projeto
+##  Como rodar
 
-### 1. Clone o repositório
+### 🔹 1. Clonar o repositório
 ```bash
 git clone https://github.com/seu-usuario/gerenciador-de-tarefas.git
 cd gerenciador-de-tarefas/backend
-2. Configure variáveis de ambiente
+🔹 2. Criar .env
 
-Crie um arquivo .env na raiz do backend com as seguintes variáveis:
+Crie um arquivo .env com as variáveis:
 
 SECRET_KEY=django-insecure-dev-key
 DEBUG=True
@@ -64,62 +70,42 @@ DB_USER=postgres
 DB_PASSWORD=postgres
 DB_HOST=db
 DB_PORT=5432
-3. Com Docker (recomendado)
+🔹 3. Com Docker (recomendado)
 docker compose up --build
 
-Acesse:
+A API estará em:
+ Swagger: http://127.0.0.1:8000/api/docs/
+ Admin: http://127.0.0.1:8000/admin/
 
-Admin: http://127.0.0.1:8000/admin/
-
-Swagger / OpenAPI: http://127.0.0.1:8000/api/docs/
-
-4. Sem Docker
+🔹 4. Sem Docker
 python -m venv venv
-source venv/bin/activate  # Linux / WSL
+source venv/bin/activate      # Linux/WSL
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
-Endpoints principais
-Autenticação
+ Endpoints principais
+ Autenticação
+Método	Rota	Descrição
+POST	/api/auth/register	Registrar usuário
+POST	/api/auth/login	Login com JWT
+POST	/api/auth/refresh	Refresh token
+GET	/api/auth/me	Detalhes do usuário
+ Tarefas
+Método	Rota	Descrição
+GET	/api/tasks	Lista tarefas
+POST	/api/tasks	Cria tarefa
+GET	/api/tasks/{id}	Detalha tarefa
+PUT	/api/tasks/{id}	Atualiza tarefa
+DELETE	/api/tasks/{id}	Exclui tarefa
 
-POST /api/auth/register → registra novo usuário
+Todos endpoints de tarefas exigem JWT válido.
 
-POST /api/auth/login → login com JWT
+ Observações finais
 
-POST /api/auth/refresh → refresh token
+ Backend funcional e pronto para ser usado
+ Swagger configurado para exploração da API
 
-GET /api/auth/me → dados do usuário autenticado
 
-Tarefas
+ Status
 
-GET /api/tasks → lista tarefas
-
-POST /api/tasks → cria tarefa
-
-GET /api/tasks/{id} → detalha tarefa
-
-PUT /api/tasks/{id} → atualiza tarefa
-
-DELETE /api/tasks/{id} → remove tarefa
-
-Todos os endpoints de tarefas requerem autenticação JWT.
-
-Status do projeto
-
-Backend completo e funcional
-
-Autenticação JWT implementada
-
-Swagger / OpenAPI configurado
-
-Estrutura modular pronta para expansão
-
-Frontend ainda não implementado
-
-Observações
-
-JWT Authentication habilitada
-
-Banco PostgreSQL rodando dentro do Docker ou localmente
-
-Estrutura modular (apps/) permite adicionar novas apps facilmente
+Status:  Completo (backend com autenticação, documentação e Docker)
